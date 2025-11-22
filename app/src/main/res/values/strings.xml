@@ -1,0 +1,12 @@
+<resources>
+  <string name="app_name">Lab 02 Asssignment</string>
+  <string name="friends_label">friends</string>
+  <string name="add_to_story">Add to story</string>
+  <string name="edit_profile">Edit Profile</string>
+  <string name="student_at">Student at</string>
+  <string name="single">Single</string>
+  <string name="see_more_info">See you About info</string>
+  <string name="edit_public_details">Edit public details</string>
+
+  <color name="primary">#3a5bf1</color>
+</resources>

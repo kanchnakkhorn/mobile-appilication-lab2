@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/main_background_color"
+  android:fitsSystemWindows="true"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+      android:padding="8dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <ImageView
+        app:tint="@color/text_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_arrow_back"
+        />
+
+      <View
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        
+        <TextView
+            android:id="@+id/profile_name_top"
+          android:layout_gravity="center_vertical"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Sok Sao"
+          android:textStyle="bold"
+          android:paddingEnd="4dp"
+          android:textSize="16sp"
+          android:textColor="@color/text_color"/>
+
+        <androidx.cardview.widget.CardView
+          android:layout_gravity="center_vertical"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:cardCornerRadius="12dp">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9+"
+            android:textColor="@color/white"
+            android:background="#db3e3a"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+          app:tint="@color/text_color"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_action_arrow_down" />
+        
+      </LinearLayout>
+
+      <View
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+          app:tint="@color/text_color"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_action_edit" />
+
+        <View
+          android:layout_width="10dp"
+          android:layout_height="0dp"/>
+
+        <ImageView
+          app:tint="@color/text_color"
+          android:id="@+id/search_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_action_search" />
+
+      </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="280dp">
+
+        <ImageView
+          android:id="@+id/image_cover"
+          android:layout_width="wrap_content"
+          android:layout_height="250dp"
+          android:scaleType="centerCrop"
+          android:src="@drawable/koh_pich"/>
+
+        <com.google.android.material.card.MaterialCardView
+          android:id="@+id/profile_wrapper"
+          android:layout_marginStart="16dp"
+          android:layout_alignParentBottom="true"
+          app:strokeWidth="2dp"
+          app:cardCornerRadius="125dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+
+          <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/kim_jong_un"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.cardview.widget.CardView
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_alignBottom="@+id/profile_wrapper"
+          android:layout_alignEnd="@+id/profile_wrapper"
+          app:cardCornerRadius="16dp"
+          android:background="@color/white"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+
+          <ImageView
+            app:tint="@color/text_color"
+            android:padding="4dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_photo_camera"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+          android:id="@+id/camera"
+          android:layout_marginBottom="12dp"
+          android:layout_marginEnd="12dp"
+          android:layout_alignBottom="@id/image_cover"
+          android:layout_alignEnd="@+id/image_cover"
+          app:cardCornerRadius="16dp"
+          android:background="@color/white"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+
+          <ImageView
+            app:tint="@color/text_color"
+            android:padding="4dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_photo_camera"/>
+        </androidx.cardview.widget.CardView>
+
+      </RelativeLayout>
+
+      <LinearLayout
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/profile_name"
+          android:layout_gravity="center_vertical"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Sok Sao"
+          android:textStyle="bold"
+          android:textSize="20sp"
+          android:textColor="@color/text_color"/>
+
+        <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+
+          <TextView
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.2k"
+            android:paddingEnd="4dp"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/text_color"/>
+
+          <TextView
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/friends_label"
+            android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <TextView
+          android:layout_gravity="center_vertical"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Love South Korea"
+          android:textSize="14sp"
+          android:textColor="@color/text_color"/>
+      </LinearLayout>
+
+      <LinearLayout
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+          android:id="@+id/add_story"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:backgroundTint="@color/primary"
+          android:textColor="#ffffff"
+          android:text="@string/add_to_story"
+          android:drawableLeft="@drawable/ic_plus"
+          android:textAllCaps="false" />
+
+        <Button
+          android:id="@+id/edit_profile_big"
+          android:layout_marginStart="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:backgroundTint="#b2b6c0"
+          android:textColor="#000000"
+          android:text="@string/edit_profile"
+          android:drawableLeft="@drawable/ic_action_edit"
+          android:textAllCaps="false" />
+
+        <ImageButton
+          android:layout_width="50dp"
+          android:layout_height="match_parent"
+          android:backgroundTint="#b2b6c0"
+          android:src="@drawable/ic_action_more_horiz"/>
+
+      </LinearLayout>
+
+
+      <LinearLayout
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+
+          <ImageView
+            app:tint="@color/text_color"
+            android:paddingEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_work"/>
+
+          <TextView
+            android:paddingEnd="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/student_at"
+            android:textColor="@color/text_color"/>
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Royal University of Phnom Penh"
+            android:textStyle="bold"
+            android:textColor="@color/text_color"
+            />
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_marginTop="8dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+          <ImageView
+            app:tint="@color/text_color"
+            android:paddingEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_heart"/>
+
+          <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/single"
+            android:textColor="@color/text_color"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_marginTop="8dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+          <ImageView
+            app:tint="@color/text_color"
+            android:paddingEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_more_horiz"/>
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/see_more_info"
+            android:textColor="@color/text_color"/>
+
+        </LinearLayout>
+
+
+        <Button
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:backgroundTint="#e1e4f0"
+          android:textColor="@color/primary"
+          android:textStyle="bold"
+          android:text="@string/edit_public_details"
+          android:textAllCaps="false" />
+
+      </LinearLayout>
+
+
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+</ScrollView>

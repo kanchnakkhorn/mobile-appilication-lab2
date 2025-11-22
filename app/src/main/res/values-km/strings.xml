@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Lab 02 Asssignment</string>
+  <string name="friends_label">មិត្តភក្កិ</string>
+  <string name="add_to_story">បន្ថែមក្នុងរឿង</string>
+  <string name="edit_profile">កែប្រូហ្វាល</string>
+  <string name="student_at">ជាសិស្សនៅ</string>
+  <string name="single">នៅលីវ</string>
+  <string name="see_more_info">មើលព័ត៍មានបន្ថែមទៀតអំពីអ្នក</string>
+  <string name="edit_public_details">កែព័ត៍មានសាធារណៈ</string>
+</resources>
