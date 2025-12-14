@@ -126,11 +126,23 @@
           android:layout_height="wrap_content">
 
           <ImageView
+              android:id="@+id/image_profile"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/kim_jong_un"/>
 
         </com.google.android.material.card.MaterialCardView>
+
+        <ProgressBar
+            android:id="@+id/profile_image_loading"
+            android:elevation="1dp"
+            android:layout_alignStart="@id/profile_wrapper"
+            android:layout_alignEnd="@id/profile_wrapper"
+            android:layout_alignTop="@id/profile_wrapper"
+            android:layout_alignBottom="@id/profile_wrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
 
         <androidx.cardview.widget.CardView
           android:layout_marginBottom="8dp"
@@ -344,6 +356,17 @@
           android:textAllCaps="false" />
 
       </LinearLayout>
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Places" />
+
+      <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rclPlaces"
+        />
 
 
 

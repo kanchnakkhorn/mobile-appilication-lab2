@@ -2,10 +2,24 @@ package com.example.lab02asssignment
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.lab02asssignment.adapter.FavoritePlacesAdapter
+import com.example.lab02asssignment.api.model.Place
+import com.example.lab02asssignment.api.service.ApiService
 import com.example.lab02asssignment.databinding.ActivityProfileBinding
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ProfileActivity : AppCompatActivity() {
   private val activityLauncher = registerForActivityResult(
@@ -16,9 +30,9 @@ class ProfileActivity : AppCompatActivity() {
       val newName = result.data?.getStringExtra("new-name")
       binding.profileName.text = newName
       binding.profileNameTop.text = newName
+//      name = newName.toString()
     }
   }
-  private val name = "Sok Dara";
   private lateinit var binding: ActivityProfileBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,9 +46,10 @@ class ProfileActivity : AppCompatActivity() {
 
     // Setup event listener
     binding.addStory.setOnClickListener { openSearchActivity() }
-    binding.editProfileBig.setOnClickListener { openEditProfileActivity() }
+    binding.editProfileBig.setOnClickListener { openMyActivitiesAcitivity() }
 
     loadAndDisplayProfile()
+    loadAndDisplayFavoritePlaces()
   }
 
   private fun openSearchActivity() {
@@ -42,16 +57,80 @@ class ProfileActivity : AppCompatActivity() {
     startActivity(intent)
   }
 
+  private fun openMyActivitiesAcitivity() {
+    val intent = Intent(this, MyActivitiesActivity::class.java)
+    startActivity(intent)
+  }
+
   private fun openEditProfileActivity() {
     val intent = Intent(this, EditProfileActivity::class.java)
-    intent.putExtra("name", name)
+//    intent.putExtra("name", name)
 //    startActivity(intent)
     activityLauncher.launch(intent)
   }
 
   private fun loadAndDisplayProfile() {
-    binding.profileName.text = name
-    binding.profileNameTop.text = name
+//    binding.profileName.text = name
+//    binding.profileNameTop.text = name
+
+    // Load Data from API
+    val retrofit = Retrofit.Builder()
+      .baseUrl("https://smlp-pub.s3.ap-southeast-1.amazonaws.com/api/")
+      .addConverterFactory(GsonConverterFactory.create())
+      .build()
+    val apiService = retrofit.create(ApiService::class.java)
+    GlobalScope.launch {
+      try {
+        val profile = apiService.getProfile()
+        withContext(Dispatchers.Main) {
+          binding.profileName.text = profile.fullName()
+
+          Picasso.get().load(profile.profileImage).into(binding.imageProfile)
+          Picasso.get().load(profile.coverImage).into(binding.imageCover)
+          hideLoading()
+        }
+      } catch (err: Exception) {
+        hideLoading()
+        Log.d("[profile-activity]", "Load profile error: ${err.message}")
+        showError(err)
+      }
+    }
   }
+
+  private fun loadAndDisplayFavoritePlaces() {
+  //    Load data from API
+    val retrofit = Retrofit.Builder()
+      .baseUrl("https://smlp-pub.s3.ap-southeast-1.amazonaws.com/api/")
+      .addConverterFactory(GsonConverterFactory.create())
+      .build()
+    val apiService = retrofit.create(ApiService::class.java)
+    GlobalScope.launch {
+      val places = apiService.getFavoritePlaces()
+      withContext(Dispatchers.Main) {
+        displayPlaces(places)
+      }
+
+    }
+  }
+
+  private fun displayPlaces(places: List<Place>) {
+    Log.d("displayPlaces", "${places}")
+    val adapter = FavoritePlacesAdapter()
+    adapter.dataSet = places
+    binding.rclPlaces.adapter = adapter
+
+    val layoutManager = LinearLayoutManager(this)
+    binding.rclPlaces.layoutManager = layoutManager
+  }
+
+  private fun showLoading() {
+    binding.profileImageLoading.isVisible = true
+  }
+
+  private fun hideLoading() {
+    binding.profileImageLoading.isVisible = false
+  }
+
+  private fun showError(err: Exception) {}
 
 }

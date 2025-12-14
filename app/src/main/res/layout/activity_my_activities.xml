@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical">
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="325dp"
+    android:id="@+id/relative_wrapper">
+
+    <ImageView
+      android:id="@+id/image_cover"
+      android:layout_width="match_parent"
+      android:layout_height="250dp"
+      android:scaleType="centerCrop"
+      android:src="@drawable/koh_pich" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:paddingStart="15dp"
+      android:paddingEnd="15dp"
+      android:paddingTop="10dp"
+      android:paddingBottom="10dp"
+      android:background="#008080"
+      android:alpha="0.7"
+      >
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Activities"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        />
+
+      <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_close" />
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+      android:id="@+id/profile_wrapper"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:strokeWidth="5dp"
+      app:cardCornerRadius="125dp"
+      android:layout_alignParentBottom="true"
+      android:layout_centerInParent="true"
+      >
+
+      <ImageView
+        android:id="@+id/image_profile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/kim_jong_un"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <ProgressBar
+      android:id="@+id/profile_image_loading"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignStart="@id/profile_wrapper"
+      android:layout_alignEnd="@id/profile_wrapper"
+      android:layout_alignTop="@id/profile_wrapper"
+      android:layout_alignBottom="@id/profile_wrapper"
+      android:elevation="1dp" />
+
+  </RelativeLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Name"
+      android:textSize="24sp"/>
+
+    <TextView
+      android:id="@+id/class_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="ITE M1"
+      android:textSize="18sp" />
+  </LinearLayout>
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rclActivities"/>
+
+
+</LinearLayout>
