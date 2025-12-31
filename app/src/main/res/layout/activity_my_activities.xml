@@ -100,6 +100,37 @@
       android:textSize="18sp" />
   </LinearLayout>
 
+  <com.google.android.material.chip.ChipGroup
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <com.google.android.material.chip.Chip
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/year_1"
+      android:text="Year 1"/>
+
+    <com.google.android.material.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/year_2"
+        android:text="Year 2"/>
+
+    <com.google.android.material.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/year_3"
+        android:text="Year 3"/>
+
+    <com.google.android.material.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/year_4"
+        android:text="Year 4"/>
+
+  </com.google.android.material.chip.ChipGroup>
+
+
   <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

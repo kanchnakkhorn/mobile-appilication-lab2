@@ -2,8 +2,10 @@ package com.example.lab02asssignment
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lab02asssignment.adapter.ActivitiesAdapter
 import com.example.lab02asssignment.api.model.Activity
@@ -19,12 +21,40 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MyActivitiesActivity: AppCompatActivity() {
   private lateinit var binding: ActivityMyActivitiesBinding
+  val adapter = ActivitiesAdapter()
+  var isGridLayout = false
+  var activitiesLayoutManager = LinearLayoutManager(this)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     binding = ActivityMyActivitiesBinding.inflate(layoutInflater)
     setContentView(binding.root)
+
+    binding.year1.setOnClickListener {
+      adapter.filterByYear(1)
+    }
+
+    binding.year2.setOnClickListener {
+      adapter.filterByYear(2)
+    }
+
+    binding.year3.setOnClickListener {
+      adapter.filterByYear(3)
+    }
+
+    binding.year4.setOnClickListener {
+//      adapter.filterByYear(4)
+      isGridLayout = !isGridLayout
+
+      if (isGridLayout) {
+        activitiesLayoutManager = GridLayoutManager(this, 2)
+      } else {
+        activitiesLayoutManager = LinearLayoutManager(this)
+      }
+      loadAndDisplayActivities()
+    }
+
     loadAndDisplayProfile()
     loadAndDisplayActivities()
   }
@@ -66,11 +96,11 @@ class MyActivitiesActivity: AppCompatActivity() {
   }
 
   private fun displayActivities(activities: List<Activity>) {
-    val adapter = ActivitiesAdapter()
-    adapter.dataSet = activities
-    binding.rclActivities.adapter = adapter
+    Log.d("Display Activities", "${activities}")
+    adapter.setData(activities)
 
-    val layoutManager = LinearLayoutManager(this)
-    binding.rclActivities.layoutManager = layoutManager
+    binding.rclActivities.adapter = adapter
+    binding.rclActivities.layoutManager = activitiesLayoutManager
+
   }
 }

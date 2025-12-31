@@ -4,12 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lab02asssignment.adapter.FavoritePlacesAdapter
+import com.example.lab02asssignment.api.ApiManager
 import com.example.lab02asssignment.api.model.Place
 import com.example.lab02asssignment.api.service.ApiService
 import com.example.lab02asssignment.databinding.ActivityProfileBinding
@@ -34,6 +38,7 @@ class ProfileActivity : AppCompatActivity() {
     }
   }
   private lateinit var binding: ActivityProfileBinding
+  private val adapter = FavoritePlacesAdapter()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -47,6 +52,11 @@ class ProfileActivity : AppCompatActivity() {
     // Setup event listener
     binding.addStory.setOnClickListener { openSearchActivity() }
     binding.editProfileBig.setOnClickListener { openMyActivitiesAcitivity() }
+
+    binding.search.doAfterTextChanged { edt ->
+      val keyword = edt.toString()
+      adapter.search(keyword)
+    }
 
     loadAndDisplayProfile()
     loadAndDisplayFavoritePlaces()
@@ -74,14 +84,14 @@ class ProfileActivity : AppCompatActivity() {
 //    binding.profileNameTop.text = name
 
     // Load Data from API
-    val retrofit = Retrofit.Builder()
-      .baseUrl("https://smlp-pub.s3.ap-southeast-1.amazonaws.com/api/")
-      .addConverterFactory(GsonConverterFactory.create())
-      .build()
-    val apiService = retrofit.create(ApiService::class.java)
+//    val retrofit = Retrofit.Builder()
+//      .baseUrl("https://smlp-pub.s3.ap-southeast-1.amazonaws.com/api/")
+//      .addConverterFactory(GsonConverterFactory.create())
+//      .build()
+//    val apiService = retrofit.create(ApiService::class.java)
     GlobalScope.launch {
       try {
-        val profile = apiService.getProfile()
+        val profile = ApiManager.instance.service.getProfile()
         withContext(Dispatchers.Main) {
           binding.profileName.text = profile.fullName()
 
@@ -99,13 +109,13 @@ class ProfileActivity : AppCompatActivity() {
 
   private fun loadAndDisplayFavoritePlaces() {
   //    Load data from API
-    val retrofit = Retrofit.Builder()
-      .baseUrl("https://smlp-pub.s3.ap-southeast-1.amazonaws.com/api/")
-      .addConverterFactory(GsonConverterFactory.create())
-      .build()
-    val apiService = retrofit.create(ApiService::class.java)
+//    val retrofit = Retrofit.Builder()
+//      .baseUrl("https://smlp-pub.s3.ap-southeast-1.amazonaws.com/api/")
+//      .addConverterFactory(GsonConverterFactory.create())
+//      .build()
+//    val apiService = retrofit.create(ApiService::class.java)
     GlobalScope.launch {
-      val places = apiService.getFavoritePlaces()
+      val places = ApiManager.instance.service.getFavoritePlaces()
       withContext(Dispatchers.Main) {
         displayPlaces(places)
       }
@@ -115,8 +125,16 @@ class ProfileActivity : AppCompatActivity() {
 
   private fun displayPlaces(places: List<Place>) {
     Log.d("displayPlaces", "${places}")
-    val adapter = FavoritePlacesAdapter()
-    adapter.dataSet = places
+
+
+    adapter.setOnItemClickListener { place, position ->
+//      Toast.makeText(this@ProfileActivity, place.name, Toast.LENGTH_LONG).show()
+      val intent = Intent(this@ProfileActivity, PlaceDetailActivity::class.java)
+      intent.putExtra("place", place)
+      startActivity(intent)
+    }
+
+    adapter.setData(places)
     binding.rclPlaces.adapter = adapter
 
     val layoutManager = LinearLayoutManager(this)
