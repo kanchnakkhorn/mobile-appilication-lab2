@@ -100,41 +100,46 @@
       android:textSize="18sp" />
   </LinearLayout>
 
-  <com.google.android.material.chip.ChipGroup
+  <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-
-    <com.google.android.material.chip.Chip
-      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:id="@+id/year_1"
-      android:text="Year 1"/>
+      android:orientation="horizontal"
+      android:paddingStart="16dp"
+      android:paddingEnd="16dp"
+      >
 
-    <com.google.android.material.chip.Chip
-        android:layout_width="wrap_content"
+
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingStart="16dp"
+      android:paddingEnd="16dp">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout_filters"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/year_2"
-        android:text="Year 2"/>
+        android:layout_weight="1"
+        android:layout_marginEnd="16dp" />
 
-    <com.google.android.material.chip.Chip
+    <ImageButton
+        android:id="@+id/change_view_type"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/year_3"
-        android:text="Year 3"/>
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_action_list" />
 
-    <com.google.android.material.chip.Chip
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/year_4"
-        android:text="Year 4"/>
-
-  </com.google.android.material.chip.ChipGroup>
+  </LinearLayout>
 
 
   <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/rclActivities"/>
+    android:id="@+id/rclActivities"
+      android:paddingStart="8dp"
+      android:paddingEnd="8dp"/>
 
 
 </LinearLayout>
